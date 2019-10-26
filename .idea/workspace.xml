@@ -2,7 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="020e0148-6886-4d64-ab6c-b0675f0519a7" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/App.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/main/CoffeeMaker.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/main/CoffeeMaker.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/main/Coin.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/main/InsertCoin.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/sidebar/SideBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/sidebar/SideBar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/topbar/TopBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/component/topbar/TopBar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/CoinInsert.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/WsExample.jsx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,6 +51,12 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="yarn" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/component/main" />
+      <recent name="$PROJECT_DIR$/src/component/topbar" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -75,7 +96,7 @@
       <option name="presentableId" value="Default" />
       <updated>1572008730853</updated>
       <workItem from="1572008736117" duration="3316000" />
-      <workItem from="1572075826748" duration="8315000" />
+      <workItem from="1572075826748" duration="18241000" />
     </task>
     <servers />
   </component>

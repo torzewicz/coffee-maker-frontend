@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {CoffeeClientService} from "../service/CoffeeClientService";
 
 
-class CoinInsert extends Component {
+class WsExample extends Component {
 
     constructor(props) {
         super(props);
@@ -78,4 +78,4 @@ class CoinInsert extends Component {
     }
 }
 
-export default CoinInsert;
+export default WsExample;
