@@ -1,0 +1,26 @@
+$primary-color: #FBDD41;
+
+$topbar-height: 80px;
+$sidebar-width: 260px;
+
+
+
+.App {
+  text-align: center;
+  min-height: 100%;
+  font-family: Lato, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 29px;
+
+}
+
+
+.main-content {
+
+  padding-top: 8px;
+  margin-top: $topbar-height;
+  margin-left: $sidebar-width;
+
+}
