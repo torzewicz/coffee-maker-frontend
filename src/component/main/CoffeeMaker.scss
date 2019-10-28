@@ -1,4 +1,5 @@
 @import "./../../utils.scss";
+@import "./../../App.scss";
 
 .tile {
   background: #FFFFFF;
@@ -9,10 +10,6 @@
 
   margin: 10px;
   padding: 10px;
-}
-
-.insert-coin {
-  max-width: 300px;
 
   span {
     display: block;
@@ -21,7 +18,13 @@
   }
 }
 
-.amount{
+.insert-coin {
+  max-width: 300px;
+
+
+}
+
+.amount {
 
   span {
     display: inline;
@@ -36,7 +39,7 @@
 }
 
 
-.coins{
+.coins {
 }
 
 .coin {
@@ -65,5 +68,112 @@
   text-decoration: none;
   display: inline-block;
   background-color: silver;
+  font-size: 20px;
+}
+
+
+.select-coffee-container {
+  max-width: 300px;
+
+  ul {
+    padding-left: 10px;
+  }
+
+
+}
+
+.select-coffee-label {
+  display: block;
+  text-align: left;
+  padding: 5px;
+}
+
+.coffee-label-container {
+
+  span {
+    display: inline-block;
+  }
+}
+
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+[type="radio"]:checked + label,
+[type="radio"]:not(:checked) + label
+{
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+[type="radio"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #333333;
+  border-radius: 100%;
+  background: #fff;
+}
+
+[type="radio"]:disabled + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #aaaaaa;
+  border-radius: 100%;
+  background: #fff;
+}
+
+
+
+[type="radio"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: $primary-color;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+
+
+
+[type="radio"]:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+[type="radio"]:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+
+.confirm-order-btn {
+  border-radius: 15px;
+  color: black;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  background-color: $primary-color;
   font-size: 20px;
 }
