@@ -1,7 +1,7 @@
 import * as SockJS from 'sockjs-client';
 import * as StompJS from '@stomp/stompjs';
 
-const SERVER_URL = 'localhost:8080';
+const SERVER_URL = 'f948d8e1.ngrok.io';
 
 
 export class CoffeeClientService {
@@ -10,10 +10,6 @@ export class CoffeeClientService {
 
         this.stompClient = new StompJS.Client({
             brokerURL: 'ws://' + SERVER_URL + "/connect",
-            // connectHeaders: {
-            //     login: "user",
-            //     passcode: "password"
-            // },
             debug: function (str) {
                 console.log(str);
             },
@@ -25,10 +21,7 @@ export class CoffeeClientService {
 
 // Fallback code
         if (typeof WebSocket !== 'function') {
-            // For SockJS you need to set a factory that creates a new SockJS instance
-            // to be used for each (re)connect
             this.stompClient.webSocketFactory =  () => {
-                // Note that the URL is different from the WebSocket URL
                 return new SockJS('http://' + SERVER_URL + '/connect');
             };
         }
@@ -36,15 +29,10 @@ export class CoffeeClientService {
         this.stompClient.onConnect = (frame) => {
             // Do something, all subscribes must be done is this callback
             // This is needed because this will be executed after a (re)connect
-            this.subscribeForHellos();
 
         };
 
         this.stompClient.onStompError = (frame) => {
-            // Will be invoked in case of error encountered at Broker
-            // Bad login/passcode typically will cause an error
-            // Complaint brokers will set `message` header with a brief message. Body may contain details.
-            // Compliant brokers will terminate the connection after any error
             console.log('Broker reported error: ' + frame.headers['message']);
             console.log('Additional details: ' + frame.body);
         };
@@ -60,22 +48,25 @@ export class CoffeeClientService {
         console.log("Disconnected");
     }
 
-    subscribeForHellos() {
-        return this.stompClient.subscribe("/topic/hello", (message) => {
-            let hello = JSON.parse(message.body)
-            console.log("HELLO", hello)
+    askForIngredients() {
+        // let message = {name: name};
+
+        this.stompClient.publish({
+            destination: '/app/ingredients'
+            // body: JSON.stringify(message)
+            // body:
         });
     }
 
-
-    sendName(name) {
-        let message = {name: name};
-
+    updateIngredients(ingredients) {
         this.stompClient.publish({
-            destination: '/app/hello',
-            body: JSON.stringify(message)
+            destination: '/app/ingredients/update',
+            body: JSON.stringify(ingredients)
         });
+    }
 
+    subscribeForIngredients(callback) {
+        return this.stompClient.subscribe("/topic/ingredients", callback)
     }
 
     setConnected(isConnected) {

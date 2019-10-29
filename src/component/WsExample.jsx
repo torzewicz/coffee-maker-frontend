@@ -13,7 +13,7 @@ class WsExample extends Component {
         };
 
         this.initConnection = this.initConnection.bind(this);
-        this.sendName = this.sendName.bind(this);
+        this.askForIngredients = this.askForIngredients.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
 
     }
@@ -29,8 +29,11 @@ class WsExample extends Component {
     }
 
 
-    sendName() {
-        this.state.sockClient.sendName(this.state.name)
+    askForIngredients() {
+        // this.state.sockClient.sendName(this.state.name)
+        this.state.sockClient.subscribeForIngredients();
+        this.state.sockClient.askForIngredients()
+        // this.state.sockClient.sendName(this.state.name)
     }
 
     handleNameChange(event) {
@@ -51,11 +54,11 @@ class WsExample extends Component {
                     </div>
                     <div className="col-md-6">
                         <form className="form-inline">
-                            <div className="form-group">
-                                <input type="text" id="name" className="form-control"
-                                       placeholder="Your name here..." onChange={this.handleNameChange} value={this.state.name}/>
-                            </div>
-                            <button onClick={this.sendName} type="button">Send</button>
+                            {/*<div className="form-group">*/}
+                            {/*    <input type="text" id="name" className="form-control"*/}
+                            {/*           placeholder="Your name here..." onChange={this.handleNameChange} value={this.state.name}/>*/}
+                            {/*</div>*/}
+                            <button onClick={this.askForIngredients} type="button">Ask for ingredients</button>
                         </form>
                     </div>
                 </div>

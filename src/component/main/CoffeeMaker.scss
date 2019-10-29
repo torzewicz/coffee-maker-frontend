@@ -20,8 +20,10 @@
 
 .insert-coin {
   max-width: 300px;
+}
 
-
+.sugar-slider {
+  max-width: 300px;
 }
 
 .amount {
@@ -136,8 +138,6 @@
   background: #fff;
 }
 
-
-
 [type="radio"]:checked + label:after,
 [type="radio"]:not(:checked) + label:after {
   content: '';
@@ -151,8 +151,6 @@
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
-
-
 
 
 [type="radio"]:not(:checked) + label:after {
