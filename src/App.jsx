@@ -11,6 +11,7 @@ import TopBar from "./component/topbar/TopBar";
 import SideBar from "./component/sidebar/SideBar";
 import CoffeeMaker from "./component/main/CoffeeMaker";
 import WsExample from "./component/WsExample";
+import AdminPanel from "./component/admin/AdminPanel";
 
 function App() {
     return (
@@ -31,7 +32,7 @@ function App() {
                             <CoffeeMaker/>
                         </Route>
                         <Route path="/about">
-                            <WsExample/>
+                            <AdminPanel/>
                         </Route>
                     </Switch>
 

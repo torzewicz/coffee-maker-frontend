@@ -60,7 +60,6 @@ class SelectCoffee extends Component {
 
                 <button className="confirm-order-btn"
                         onClick={() => {
-                            console.log("Selected: elo" + this.state.selectedCoffee);
                             this.props.onConfirmOrder(this.state.selectedCoffee)
                         }}
                 >

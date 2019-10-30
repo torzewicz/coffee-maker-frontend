@@ -7,6 +7,9 @@ import {MixingContainer} from "../../service/MixingContainer";
 import SugarSlider from "./SugarSlider";
 
 class CoffeeMaker extends Component {
+
+
+
     constructor(props) {
         super(props);
 
@@ -14,7 +17,6 @@ class CoffeeMaker extends Component {
             sockClient: {},
             credit: 0.0,
             sugar: 0.04,
-            // selectedCoffeeId: null,
             coffeeList: [
                 {
                     id: 0,
@@ -74,16 +76,24 @@ class CoffeeMaker extends Component {
         this.onCoffeeSelected = this.onCoffeeSelected.bind(this);
 
         this.initConnection = this.initConnection.bind(this);
+        this.disconnect = this.disconnect.bind(this);
         this.askForIngredients = this.askForIngredients.bind(this);
         this.confirmOrderHandler = this.confirmOrderHandler.bind(this);
         this.handleSugarChange = this.handleSugarChange.bind(this);
 
 
+        this.sendCriticalAlert = this.sendCriticalAlert.bind(this);
+        this.sendWarning = this.sendWarning.bind(this);
+        this.sendInfo = this.sendInfo.bind(this);
 
     }
 
     componentDidMount() {
         this.initConnection()
+    }
+
+    componentWillUnmount() {
+        // this.disconnect()
     }
 
     onCoinInserted(amount) {
@@ -108,15 +118,45 @@ class CoffeeMaker extends Component {
         });
     }
 
+    disconnect() {
+        this.state.sockClient.disconnect();
+
+    }
+
     askForIngredients(callback) {
         this.state.sockClient.subscribeForIngredients(callback);
         this.state.sockClient.askForIngredients()
     }
 
+    sendCriticalAlert(message) {
+        let msg = {
+            info: message,
+            alarmType: "CRITICAL"
+        };
+        this.state.sockClient.sendAlert(msg)
+    }
+
+
+    sendWarning(message) {
+        let msg = {
+            info: message,
+            alarmType: "WARNING"
+        };
+        this.state.sockClient.sendAlert(msg)
+    }
+
+    sendInfo(message) {
+        let msg = {
+            info: message,
+            alarmType: "OK"
+        };
+        this.state.sockClient.sendAlert(msg)
+    }
+
 
     confirmOrderHandler(selectedCoffeeId) {
-        console.log("Order confirmed");
-        console.log("Selected coffee", selectedCoffeeId);
+        // console.log("Order confirmed");
+        // console.log("Selected coffee", selectedCoffeeId);
 
         let selectedCoffee = this.state.coffeeList.filter((coffee) => {
             return coffee.id.toString() === selectedCoffeeId.toString();
@@ -142,9 +182,9 @@ class CoffeeMaker extends Component {
 
                 let mixingContainer = new MixingContainer(ingredients);
 
-                mixingContainer.onCompleted(() => {
-                    console.log("Coffee Done");
-                });
+                mixingContainer.sendInfoHandler(this.sendInfo);
+                // mixingContainer.sendWarningHandler(this.sendWarning);
+                // mixingContainer.sendCriticalAlertHandler(this.sendCriticalAlert);
 
                 mixingContainer.onIngredientsAdded((remainingIngredients) => {
                     this.state.sockClient.updateIngredients(remainingIngredients)
@@ -183,7 +223,6 @@ class CoffeeMaker extends Component {
                 />
 
                 <SugarSlider onChange={this.handleSugarChange}/>
-
 
                 <SelectCoffee
                     selectedCoffeeId={this.state.selectedCoffeeId}

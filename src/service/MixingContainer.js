@@ -9,10 +9,19 @@ export class MixingContainer {
 
         this.onIngredientsAddedHandler = () => {
         };
-        this.onWaterAddedHandler = () => {
+
+
+        this.sendInfo = () => {
+            // console.log("No info handler defined")
         };
-        this.onCompletedCallback = () => {
-        };
+
+        // this.sendWarning = () => {
+        // //     console.log("No warning handler defined")
+        // };
+        //
+        // this.sendCriticalAlert = () => {
+        // //     console.log("No critical alert handler defined")
+        // };
     }
 
 
@@ -20,13 +29,20 @@ export class MixingContainer {
         this.onIngredientsAddedHandler = handler;
     }
 
-    onWaterAdded(handler) {
-        this.onWaterAddedHandler = handler;
+
+    sendInfoHandler(handler) {
+        this.sendInfo = handler;
     }
 
-    onCompleted(handler) {
-        this.onCompletedCallback = handler;
-    }
+
+    // sendWarningHandler(handler) {
+    //     this.sendWarning = handler;
+    // }
+    //
+    //
+    // sendCriticalAlertHandler(handler) {
+    //     this.sendCriticalAlert = handler;
+    // }
 
     makeCoffee(coffeeObject) {
 
@@ -36,13 +52,13 @@ export class MixingContainer {
         const newSugarLevel = this.sugarLevel - ingredients.sugar;
         const newMilkLevel = this.milkLevel - ingredients.milk;
 
-        if (newCoffeeLevel < 0) {
-            // TODO: Send alert
-        } else if (newSugarLevel < 0) {
-            // TODO: Send alert
-        } else if (newMilkLevel < 0) {
-            // TODO: Send alert
-        } else {
+        // if (newCoffeeLevel < 0) {
+        //     this.sendCriticalAlert('No coffee left')
+        // } else if (newSugarLevel < 0) {
+        //     this.sendCriticalAlert('No sugar left')
+        // } else if (newMilkLevel < 0) {
+        //     this.sendCriticalAlert('No milk left')
+        // } else {
 
             setTimeout(() => {
                 let remainingIngredients = {
@@ -50,25 +66,32 @@ export class MixingContainer {
                     currentSugarLevel: newSugarLevel,
                     currentMilkLevel: newMilkLevel
                 };
-                this.onIngredientsAddedHandler(remainingIngredients)
+                this.onIngredientsAddedHandler(remainingIngredients);
 
-                console.log("Ingredients added to mixing container");
-                console.log("Pouring water started");
+                // console.log("Ingredients added to mixing container");
+                // console.log("Pouring water started");
 
 
                 setTimeout(() => {
 
-                    console.log("Completed pouring water");
-                    this.onCompletedCallback()
+                    // console.log("Water pouring completed");
+                    this.sendInfo("Water pouring completed");
 
+                    setTimeout(() => {
+
+                        // console.log("Process completed");
+                        this.sendInfo("Process completed");
+                        alert("You can now take your coffee");
+                        window.location.reload();
+
+                        // this.onCompletedCallback()
+                    }, 1000)
 
                 }, 6000)
 
-
             }, 2000)
 
-        }
-
+        // }
 
     }
 

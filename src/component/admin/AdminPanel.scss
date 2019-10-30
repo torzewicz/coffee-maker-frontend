@@ -1,0 +1,36 @@
+$info_color: #1cb6fb;
+$warning_color: yellow;
+$critical_color: red;
+
+$opacity: 0.8;
+
+
+.notification {
+
+  list-style: none;
+  border-radius: 5px;
+  margin: 2px;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 50%;
+
+  border: 2px solid
+}
+
+
+.ok {
+  background-color: transparentize($info_color, $opacity);
+  border-color: $info_color;
+}
+
+.warning {
+  background-color: transparentize($warning_color, $opacity);
+  border-color: $warning_color;
+}
+
+
+.critical {
+  background-color: transparentize($critical_color, $opacity);
+  border-color: $critical_color;
+}
