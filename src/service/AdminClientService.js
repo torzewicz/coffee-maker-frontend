@@ -1,7 +1,7 @@
 import * as SockJS from 'sockjs-client';
 import * as StompJS from '@stomp/stompjs';
 
-const SERVER_URL = '6b651a97.ngrok.io';
+const SERVER_URL = '127.0.0.1:8080';
 
 
 export class AdminClientService {
@@ -60,6 +60,17 @@ export class AdminClientService {
         });
     }
 
+    updateIngredients(ingredients) {
+
+        console.log("updated ingredients")
+
+
+        this.stompClient.publish({
+            destination: '/app/ingredients/update',
+            body: JSON.stringify(ingredients)
+        });
+    }
+
     subscribeForIngredients(callback) {
         return this.stompClient.subscribe("/topic/ingredients", callback)
     }
@@ -80,6 +91,10 @@ export class AdminClientService {
 
     subscribeForRealTimeAlerts(callback) {
         return this.stompClient.subscribe("/topic/admin/alert", callback)
+    }
+
+    subscribeForAdminIngredients(callback) {
+        return this.stompClient.subscribe("/topic/admin/ingredients", callback)
     }
 
 }

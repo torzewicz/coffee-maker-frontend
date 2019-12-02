@@ -7,7 +7,7 @@ class AlertList extends Component {
 
         let prettyAlerts = [];
 
-        console.log(this.props.alerts)
+        // console.log(this.props.alerts)
 
 
         for (const [index, alert] of this.props.alerts.entries()) {
@@ -23,6 +23,14 @@ class AlertList extends Component {
                         {formattedDate}
                     </span>
                     {alert.info}
+
+                    {alert.alarmType.toLowerCase() === 'critical'
+                    &&
+                    <button type="button" onClick={this.props.refill}>Refill all</button>
+
+
+                    }
+
                 </li>)
         }
 

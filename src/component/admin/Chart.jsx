@@ -26,8 +26,7 @@ class Chart extends Component {
            data.push([d])
         }
 
-
-        console.log("DATA", data)
+        // console.log("DATA", data)
 
 
         let self = this,

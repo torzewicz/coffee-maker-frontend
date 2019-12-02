@@ -1,7 +1,8 @@
 import * as SockJS from 'sockjs-client';
 import * as StompJS from '@stomp/stompjs';
 
-const SERVER_URL = '6b651a97.ngrok.io';
+const SERVER_URL = '127.0.0.1:8080';
+
 
 
 export class CoffeeClientService {
