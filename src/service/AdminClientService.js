@@ -4,15 +4,14 @@ import * as StompJS from '@stomp/stompjs';
 const SERVER_URL = '127.0.0.1:8080';
 
 
-
-export class CoffeeClientService {
+export class AdminClientService {
 
     connect(callback) {
 
         this.stompClient = new StompJS.Client({
             brokerURL: 'ws://' + SERVER_URL + "/connect",
             debug: function (str) {
-                // console.log(str);
+                console.log(str);
             },
             reconnectDelay: 5000,
             heartbeatIncoming: 4000,
@@ -20,7 +19,6 @@ export class CoffeeClientService {
         });
 
 
-// Fallback code
         if (typeof WebSocket !== 'function') {
             this.stompClient.webSocketFactory =  () => {
                 return new SockJS('http://' + SERVER_URL + '/connect');
@@ -33,8 +31,8 @@ export class CoffeeClientService {
         };
 
         this.stompClient.onStompError = (frame) => {
-            // console.log('Broker reported error: ' + frame.headers['message']);
-            // console.log('Additional details: ' + frame.body);
+            console.log('Broker reported error: ' + frame.headers['message']);
+            console.log('Additional details: ' + frame.body);
         };
 
         this.stompClient.activate();
@@ -49,12 +47,10 @@ export class CoffeeClientService {
             this.stompClient.disconnect();
         }
         this.setConnected(false);
-        // console.log("Disconnected");
+        console.log("Disconnected");
     }
 
     askForIngredients() {
-
-        console.log("Asked for ingredients")
         // let message = {name: name};
 
         this.stompClient.publish({
@@ -75,20 +71,30 @@ export class CoffeeClientService {
         });
     }
 
-
-    sendAlert(message) {
-        this.stompClient.publish({
-            destination: '/app/alert',
-            body: JSON.stringify(message)
-        });
-    }
-
     subscribeForIngredients(callback) {
         return this.stompClient.subscribe("/topic/ingredients", callback)
     }
 
     setConnected(isConnected) {
-        // console.log(`Connected: ${isConnected}`)
+        console.log(`Connected: ${isConnected}`)
+    }
+
+    subscribeForAllAlerts(callback) {
+        return this.stompClient.subscribe("/topic/admin/alert/all", callback)
+    }
+
+    askForAlerts() {
+        this.stompClient.publish({
+            destination: '/app/alert/all'
+        });
+    }
+
+    subscribeForRealTimeAlerts(callback) {
+        return this.stompClient.subscribe("/topic/admin/alert", callback)
+    }
+
+    subscribeForAdminIngredients(callback) {
+        return this.stompClient.subscribe("/topic/admin/ingredients", callback)
     }
 
 }

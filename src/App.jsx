@@ -10,6 +10,8 @@ import './App.scss';
 import TopBar from "./component/topbar/TopBar";
 import SideBar from "./component/sidebar/SideBar";
 import CoffeeMaker from "./component/main/CoffeeMaker";
+import WsExample from "./component/WsExample";
+import AdminPanel from "./component/admin/AdminPanel";
 
 function App() {
     return (
@@ -30,7 +32,7 @@ function App() {
                             <CoffeeMaker/>
                         </Route>
                         <Route path="/about">
-                            <About/>
+                            <AdminPanel/>
                         </Route>
                     </Switch>
 
@@ -43,16 +45,5 @@ function App() {
     );
 }
 
-function Home() {
-    return <h2>Home</h2>;
-}
-
-function About() {
-    return <h2>About</h2>;
-}
-
-function Users() {
-    return <h2>Users</h2>;
-}
 
 export default App;
