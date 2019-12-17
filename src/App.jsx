@@ -21,7 +21,6 @@ function App() {
 
             <Router>
 
-
                 <SideBar/>
 
                 <div className="main-content">
